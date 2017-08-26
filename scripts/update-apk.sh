@@ -38,3 +38,8 @@ git branch -m apk
 
 # Force push to origin since histories are unrelated
 git push origin apk --force --quiet > /dev/null
+
+# Publish App to Play Store
+
+gem install fastlane
+fastlane supply --apk test-app-release.apk --track alpha --json_key ../scripts/fastlane.json --package_name com.iamareebjamal.fastlane

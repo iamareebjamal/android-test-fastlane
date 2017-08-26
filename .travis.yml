@@ -1,24 +1,24 @@
 language: android
 sudo: false
 jdk:
-    - oraclejdk8
+- oraclejdk8
 android:
   components:
-    - tools
-    - android-25
-    - build-tools-25.0.2
-    - platform-tools
-    - extra-google-m2repository
+  - tools
+  - android-25
+  - build-tools-25.0.2
+  - platform-tools
+  - extra-google-m2repository
 before_cache:
-  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 cache:
-    directories:
-      - "${TRAVIS_BUILD_DIR}/gradle/caches/"
-      - "${TRAVIS_BUILD_DIR}/gradle/wrapper/dists/"
-      - "$HOME/.gradle/caches/"
-      - "$HOME/.gradle/wrapper/"
+  directories:
+  - "${TRAVIS_BUILD_DIR}/gradle/caches/"
+  - "${TRAVIS_BUILD_DIR}/gradle/wrapper/dists/"
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
 script:
-  - chmod +x gradlew
-  - ./gradlew assembleRelease
-  - bash scripts/prep-key.sh
-  - bash scripts/update-apk.sh
+- chmod +x gradlew
+- "./gradlew assembleRelease"
+- bash scripts/prep-key.sh
+- bash scripts/update-apk.sh

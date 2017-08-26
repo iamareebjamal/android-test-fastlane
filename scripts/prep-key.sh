@@ -9,4 +9,4 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_REPO_SLUG" != "iamareebjamal/
 fi
 
 openssl aes-256-cbc -K $encrypted_4dd7e7e22f80_key -iv $encrypted_4dd7e7e22f80_iv -in ./scripts/key.jks.enc -out ./scripts/key.jks -d
-
+openssl aes-256-cbc -K $encrypted_4dd7e7e22f80_key -iv $encrypted_4dd7e7e22f80_iv -in ./scripts/fastlane.json.enc -out ./scripts/fastlane.json -d
