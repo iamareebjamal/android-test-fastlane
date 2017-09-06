@@ -7,8 +7,14 @@ git config --global user.email "noreply+travis@iamareebjamal.org"
 export DEPLOY_BRANCH=${DEPLOY_BRANCH:-development}
 export PUBLISH_BRANCH=${PUBLISH_BRANCH:-master}
 
-if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_REPO_SLUG" != "iamareebjamal/android-test-fastlane" -o  "$TRAVIS_BRANCH" != "$DEPLOY_BRANCH" ]; then
-    echo "We upload apk only for changes in development, and not PRs. So, let's skip this shall we ? :)"
+echo $TRAVIS_BRANCH
+echo $DEPLOY_BRANCH
+echo $PUBLISH_BRANCH
+echo $TRAVIS_PULL_REQUEST
+echo $TRAVIS_REPO_SLUG
+
+if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_REPO_SLUG" != "iamareebjamal/android-test-fastlane" ] || ! [ "$TRAVIS_BRANCH" == "$DEPLOY_BRANCH" -o "$TRAVIS_BRANCH" == "$PUBLISH_BRANCH" ]; then
+    echo "We upload apk only for changes in development or master, and not PRs. So, let's skip this shall we ? :)"
     exit 0
 fi
 
