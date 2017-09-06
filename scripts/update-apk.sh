@@ -20,8 +20,7 @@ fi
 
 git clone --quiet --branch=apk https://iamareebjamal:$GITHUB_API_KEY@github.com/iamareebjamal/android-test-fastlane apk > /dev/null
 cd apk
-rm *.apk
-cp ../app/build/outputs/apk/*.apk .
+\cp -r ../app/build/outputs/apk/*.apk .
 
 if [ "$TRAVIS_BRANCH" == "$PUBLISH_BRANCH" ]; then
     echo "Push to master branch detected, signing the app..."
@@ -30,7 +29,7 @@ if [ "$TRAVIS_BRANCH" == "$PUBLISH_BRANCH" ]; then
 	${ANDROID_HOME}/build-tools/25.0.2/zipalign -v -p 4 app-release-unaligned.apk app-release.apk
 fi
 
-for file in *; do
+for file in app*; do
   mv $file test-${file%%}
 done
 
